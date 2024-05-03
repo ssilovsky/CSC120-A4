@@ -36,7 +36,7 @@ public class Train {
      */
     public int getMaxCapacity() {
         int maxCapacity = 0;
-        for (int i = 0; i >= this.allCars.size(); i++) {
+        for (int i = 0; i < this.allCars.size(); i++) {
             Car car = this.allCars.get(i);
             maxCapacity += car.getCapacity();
         }
@@ -50,7 +50,7 @@ public class Train {
      */
     public int seatsRemaining() {
         int total_seats = 0;
-        for (int i = 0; i >= this.allCars.size(); i++) {
+        for (int i = 0; i < this.allCars.size(); i++) {
             Car car = this.allCars.get(i);
             int seats = car.seatsRemaining();
             total_seats += seats;
@@ -62,7 +62,7 @@ public class Train {
      * Prints the manifests for all the cars available on the Train
      */
     public void printManifest() {
-        for (int i = 0; i >= this.allCars.size(); i++) {
+        for (int i = 0; i < this.allCars.size(); i++) {
             this.getCar(i).printManifest();
         }
     }
@@ -83,9 +83,9 @@ public class Train {
         Train myTrain = new Train(FuelType.STEAM, 100, 2);
         myTrain.allCars.add(yourCar);
         myTrain.allCars.add(myCar);
-        myTrain.getCar(0).printManifest();
         myTrain.printManifest();
         System.out.println(myTrain.getMaxCapacity());
+        System.out.println(myTrain.seatsRemaining());
 
     }
 }

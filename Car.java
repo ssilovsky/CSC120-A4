@@ -14,7 +14,6 @@ public class Car {
      * @return int, capacity of the car
      */
     public int getCapacity() {
-        System.out.println("Capacity is " + this.capacity);
         return this.capacity;
     }
 
@@ -25,7 +24,6 @@ public class Car {
      */
     public int seatsRemaining() {
         int seatsRem = this.capacity - this.passList.size();
-        System.out.println("There are " + seatsRem + " seats remaining.");
         return seatsRem;
     }
 
@@ -91,8 +89,8 @@ public class Car {
         Passenger w = new Passenger("Jo");
         myCar.addPassenger(p);
         myCar.addPassenger(w);
-        myCar.getCapacity();
-        myCar.seatsRemaining();
+        System.out.println(myCar.getCapacity());
+        System.out.println(myCar.seatsRemaining());
         myCar.printManifest();
     }
 }
