@@ -2,12 +2,20 @@ public class Passenger {
 
     // changed to public because I could not access the passenger's name for
     // printManifest()
-    String name;
+    private String name;
 
     public Passenger(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @param c
+     */
+
+     public String getName(){
+        return this.name;
+     }
     /**
      * Boards Passenger to Car
      * 

@@ -3,13 +3,11 @@
 import java.util.ArrayList;
 
 public class Train {
-    Engine engine;
-    ArrayList<Car> allCars = new ArrayList<Car>();
-    Car car;
+    private final Engine engine;
+    private ArrayList<Car> allCars = new ArrayList<Car>();
 
-    public Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity) {
-        engine = new Engine(fuelType, fuelCapacity, fuelCapacity, true);
-        car = new Car(passengerCapacity);
+    public Train(FuelType fuelType, double fuelCapacity, int nCars) {
+        this.engine = new Engine(fuelType, fuelCapacity, fuelCapacity, true);
     }
 
     /**
@@ -18,7 +16,7 @@ public class Train {
      * @return Engine object
      */
     public Engine getEngine() {
-        return engine;
+        return this.engine;
     }
 
     /**
@@ -28,7 +26,7 @@ public class Train {
      * @return the car at the specified index
      */
     public Car getCar(int i) {
-        return allCars.get(i);
+        return this.allCars.get(i);
     }
 
     /**
@@ -37,7 +35,12 @@ public class Train {
      * @return capacity of all cars on the Train
      */
     public int getMaxCapacity() {
-        return car.getCapacity();
+        int maxCapacity = 0;
+        for (int i = 0; i >= this.allCars.size(); i++) {
+            Car car = this.allCars.get(i);
+            maxCapacity += car.getCapacity();
+        }
+        return maxCapacity;
     }
 
     /**
@@ -47,8 +50,8 @@ public class Train {
      */
     public int seatsRemaining() {
         int total_seats = 0;
-        for (int i = 0; i >= allCars.size(); i++) {
-            Car car = allCars.get(i);
+        for (int i = 0; i >= this.allCars.size(); i++) {
+            Car car = this.allCars.get(i);
             int seats = car.seatsRemaining();
             total_seats += seats;
         }
@@ -59,9 +62,8 @@ public class Train {
      * Prints the manifests for all the cars available on the Train
      */
     public void printManifest() {
-        for (int i = 0; i >= allCars.size(); i++) {
-            Car car = allCars.get(i);
-            car.printManifest();
+        for (int i = 0; i >= this.allCars.size(); i++) {
+            this.getCar(i).printManifest();
         }
     }
 
@@ -77,10 +79,13 @@ public class Train {
         Passenger s = new Passenger("Janet");
         yourCar.addPassenger(t);
         yourCar.addPassenger(s);
-        Train myTrain = new Train(FuelType.STEAM, 100, 2, 10);
+        yourCar.addPassenger(s);
+        Train myTrain = new Train(FuelType.STEAM, 100, 2);
         myTrain.allCars.add(yourCar);
         myTrain.allCars.add(myCar);
+        myTrain.getCar(0).printManifest();
         myTrain.printManifest();
+        System.out.println(myTrain.getMaxCapacity());
 
     }
 }

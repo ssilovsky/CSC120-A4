@@ -1,8 +1,8 @@
 public class Engine {
-    FuelType fuel;
-    double currentLevel;
-    double maxLevel;
-    boolean notEmpty;
+    private FuelType fuel;
+    private double currentLevel;
+    private double maxLevel;
+    private boolean notEmpty;
 
     public Engine(FuelType fuel, double currentLevel, double maxLevel, boolean notEmpty) {
         this.fuel = fuel;
@@ -15,7 +15,7 @@ public class Engine {
      * refuels the engine to max fuel
      */
     public void refuel() {
-        currentLevel = maxLevel;
+        this.currentLevel = this.maxLevel;
     }
 
     /**
@@ -24,14 +24,9 @@ public class Engine {
      * @return bullean, states whether the fuel tank is empty
      */
     public boolean go() {
-        currentLevel -= 1;
-        System.out.println("Fuel level is " + currentLevel);
-        if (currentLevel >= 1) {
-            notEmpty = true;
-        } else {
-            notEmpty = false;
-        }
-        return notEmpty;
+        this.currentLevel -= 1;
+        System.out.println("Fuel level is " + this.currentLevel);
+        return this.currentLevel >= 1;
     }
 
     public static void main(String[] args) {

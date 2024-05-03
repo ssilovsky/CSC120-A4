@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Car {
-    ArrayList<Passenger> passList = new ArrayList<Passenger>();
-    int capacity;
+    private ArrayList<Passenger> passList = new ArrayList<Passenger>();
+    private int capacity;
 
     public Car(int capacity) {
         this.capacity = capacity;
@@ -14,8 +14,8 @@ public class Car {
      * @return int, capacity of the car
      */
     public int getCapacity() {
-        System.out.println("Capacity is " + capacity);
-        return capacity;
+        System.out.println("Capacity is " + this.capacity);
+        return this.capacity;
     }
 
     /**
@@ -24,7 +24,7 @@ public class Car {
      * @return int, the remaining seats in the car
      */
     public int seatsRemaining() {
-        int seatsRem = capacity - passList.size();
+        int seatsRem = this.capacity - this.passList.size();
         System.out.println("There are " + seatsRem + " seats remaining.");
         return seatsRem;
     }
@@ -36,10 +36,15 @@ public class Car {
      * @return boolean, whether or not the passenger was added
      */
     public boolean addPassenger(Passenger p) {
-        if (passList.size() <= capacity) {
-            passList.add(p);
-            System.out.println("Successfully added");
-            return true;
+        if (this.passList.size() <= this.capacity) {
+            if (this.passList.contains(p)) {
+                System.out.println("Passenger is already on this car.");
+                return false;
+            } else {
+                this.passList.add(p);
+                System.out.println("Successfully added");
+                return true;
+            }
         } else {
             System.out.println("Couldn't add");
             return false;
@@ -53,8 +58,8 @@ public class Car {
      * @return boolean, whether or not the passenger was removed
      */
     public boolean removePassenger(Passenger p) {
-        if (passList.contains(p)) {
-            passList.remove(p);
+        if (this.passList.contains(p)) {
+            this.passList.remove(p);
             System.out.println("Successully removed");
             return true;
         } else {
@@ -67,13 +72,13 @@ public class Car {
      * Prints the names of the passengers in the car
      */
     public void printManifest() {
-        if (passList.isEmpty()) {
+        if (this.passList.isEmpty()) {
             System.out.println("This car is EMPTY");
         } else {
             System.out.println("Here are the passengers aboard this car: ");
-            for (int i = 0; i < passList.size(); i++) {
-                Passenger passenger = passList.get(i);
-                System.out.println(passenger.name);
+            for (int i = 0; i < this.passList.size(); i++) {
+                Passenger passenger = this.passList.get(i);
+                System.out.println(passenger.getName());
             }
         }
 
